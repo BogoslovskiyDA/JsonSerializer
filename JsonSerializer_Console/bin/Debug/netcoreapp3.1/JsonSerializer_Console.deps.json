@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "JsonSerializer_Console/1.0.0": {
+        "dependencies": {
+          "JsonSerializer": "1.0.0"
+        },
+        "runtime": {
+          "JsonSerializer_Console.dll": {}
+        }
+      },
+      "JsonSerializer/1.0.0": {
+        "runtime": {
+          "JsonSerializer.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "JsonSerializer_Console/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "JsonSerializer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

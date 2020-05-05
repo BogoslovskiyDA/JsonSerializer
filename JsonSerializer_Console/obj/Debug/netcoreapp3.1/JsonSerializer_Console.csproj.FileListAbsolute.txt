@@ -1,0 +1,16 @@
+D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer_Console\obj\Debug\netcoreapp3.1\JsonSerializer_Console.csproj.CoreCompileInputs.cache
+D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer_Console\obj\Debug\netcoreapp3.1\JsonSerializer_Console.AssemblyInfoInputs.cache
+D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer_Console\obj\Debug\netcoreapp3.1\JsonSerializer_Console.AssemblyInfo.cs
+D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer_Console\bin\Debug\netcoreapp3.1\JsonSerializer_Console.exe
+D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer_Console\bin\Debug\netcoreapp3.1\JsonSerializer_Console.deps.json
+D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer_Console\bin\Debug\netcoreapp3.1\JsonSerializer_Console.runtimeconfig.json
+D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer_Console\bin\Debug\netcoreapp3.1\JsonSerializer_Console.runtimeconfig.dev.json
+D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer_Console\bin\Debug\netcoreapp3.1\JsonSerializer_Console.dll
+D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer_Console\bin\Debug\netcoreapp3.1\JsonSerializer_Console.pdb
+D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer_Console\obj\Debug\netcoreapp3.1\JsonSerializer_Console.dll
+D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer_Console\obj\Debug\netcoreapp3.1\JsonSerializer_Console.pdb
+D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer_Console\obj\Debug\netcoreapp3.1\JsonSerializer_Console.genruntimeconfig.cache
+D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer_Console\bin\Debug\netcoreapp3.1\JsonSerializer.dll
+D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer_Console\bin\Debug\netcoreapp3.1\JsonSerializer.pdb
+D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer_Console\obj\Debug\netcoreapp3.1\JsonSerializer_Console.csprojAssemblyReference.cache
+D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer_Console\obj\Debug\netcoreapp3.1\JsonSerializer_Console.csproj.CopyComplete
