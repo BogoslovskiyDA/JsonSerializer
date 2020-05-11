@@ -13,18 +13,8 @@ namespace JsonSerializer_Console
             Person person = new Person(1, "Jack");
             //person.Children.Add(person1);
             person.Children.Add(new Person(2, "Jill"));
-            //person.Children.Add(new Person(3, "Josuke"));
-            
-            
+            //person.Children.Add(new Person(3, "Josuke"));                        
             JsonGenerator.GenerateJson(person);
-
-            //var list = new List<int> { 1, 2, 3 };
-            //Console.WriteLine(list);
-            //var arr = list.ToArray();
-            //foreach (var item in arr)
-            //{
-            //    Console.WriteLine(item);
-            //}
 
             Console.ReadKey();
         }

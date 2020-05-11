@@ -10,13 +10,19 @@ namespace JsonSerializer
 {
     public class JsonGenerator
     {
-        private static int k = -1;
+        private static int probels = -2;
         public static void GenerateJson(object value)
         {
-            k++;
+            probels += 2;
             var objectType = value.GetType();
+            var attr = objectType.GetCustomAttributes(false);
+            if (!Attribute.IsDefined(value.GetType(), typeof(JsonObjectAttribute)))
+            {
+                Console.WriteLine("Аттрибут не найден");
+                return;
+            }
             var properties = objectType.GetProperties();
-            for (int i = 0; i < k ; i++)
+            for (int i = 0; i < probels ; i++)
             {
                 Console.Write(" ");
             }
@@ -28,7 +34,7 @@ namespace JsonSerializer
 
                 if (attrs.Any(a => a.GetType() == typeof(JsonAttributeAttribute)))
                 {
-                    for (int i = 0; i < k; i++)
+                    for (int i = 0; i < probels; i++)
                     {
                         Console.Write(" ");
                     }
@@ -38,7 +44,9 @@ namespace JsonSerializer
                 {
                     
                     var array = prop.GetValue(value) as IEnumerable;
-                    for (int i = 0; i < k; i++)
+                    if (((IList)array).Count == 0)
+                        break;
+                    for (int i = 0; i < probels; i++)
                     {
                         Console.Write(" ");
                     }
@@ -47,29 +55,19 @@ namespace JsonSerializer
                     {
                         GenerateJson(item);                     
                     }
-                    for (int i = 0; i < k; i++)
+                    for (int i = 0; i < probels; i++)
                     {
                         Console.Write(" ");
                     }
                     Console.WriteLine(" ]");
                 }
             }
-            for (int i = 0; i < k; i++)
+            for (int i = 0; i < probels; i++)
             {
                 Console.Write(" ");
             }
             Console.WriteLine("}");
-            k--;
+            probels -= 2;
         }
     }
 }
-
-
-
-
-
-//var pi = item.GetType().GetProperties();
-                        //foreach (var it in pi)
-                        //{
-                        //    Console.WriteLine(it.PropertyType + " " + it.Name + " " + it.GetValue(item));
-                        //}

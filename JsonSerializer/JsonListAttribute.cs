@@ -8,6 +8,5 @@ namespace JsonSerializer
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class JsonListAttribute : Attribute
-    {
-    }
+    { }
 }
