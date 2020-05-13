@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -11,7 +12,20 @@ namespace JsonSerializer
     public class JsonGenerator
     {
         private static int probels = -2;
+
         public static void GenerateJson(object value)
+        {
+            probels = -2;
+            var sb = new StringBuilder();
+            Serialize(value, sb);
+            using (var sw = new StreamWriter("json.txt"))
+            {
+                sw.Write(sb);
+            }
+            Console.WriteLine(sb);
+        }
+
+        public static void Serialize(object value,StringBuilder sb)
         {
             probels += 2;
             var objectType = value.GetType();
@@ -22,51 +36,36 @@ namespace JsonSerializer
                 return;
             }
             var properties = objectType.GetProperties();
-            for (int i = 0; i < probels ; i++)
-            {
-                Console.Write(" ");
-            }
-            Console.WriteLine("{");
+            sb.Append(' ', probels);
+            sb.AppendLine("{");
             foreach (var prop in properties)
-            {
-                
+            {              
                 var attrs = prop.GetCustomAttributes(false);
-
                 if (attrs.Any(a => a.GetType() == typeof(JsonAttributeAttribute)))
                 {
-                    for (int i = 0; i < probels; i++)
+                    if (prop.PropertyType.IsGenericType)
                     {
-                        Console.Write(" ");
+                        var array = prop.GetValue(value) as IEnumerable;
+                        if (((IList)array).Count == 0)
+                            break;
+                        sb.Append(' ', probels);
+                        sb.AppendLine($" \"{prop.Name.ToLower()}\" : [");
+                        foreach (var item in array)
+                        {
+                            Serialize(item,sb);
+                        }
+                        sb.Append(' ', probels + 1);
+                        sb.AppendLine("]");
                     }
-                    Console.WriteLine($" \"{prop.Name.ToLower()}\" : " + prop.GetValue(value));
-                }
-                if (attrs.Any(a => a.GetType() == typeof(JsonListAttribute)))
-                {
-                    
-                    var array = prop.GetValue(value) as IEnumerable;
-                    if (((IList)array).Count == 0)
-                        break;
-                    for (int i = 0; i < probels; i++)
+                    else
                     {
-                        Console.Write(" ");
+                        sb.Append(' ', probels);
+                        sb.AppendLine($" \"{prop.Name.ToLower()}\" : " + prop.GetValue(value));
                     }
-                    Console.WriteLine($" \"{prop.Name.ToLower()}\" : [");
-                    foreach (var item in array)
-                    {
-                        GenerateJson(item);                     
-                    }
-                    for (int i = 0; i < probels; i++)
-                    {
-                        Console.Write(" ");
-                    }
-                    Console.WriteLine(" ]");
                 }
             }
-            for (int i = 0; i < probels; i++)
-            {
-                Console.Write(" ");
-            }
-            Console.WriteLine("}");
+            sb.Append(' ', probels);
+            sb.AppendLine("}");
             probels -= 2;
         }
     }

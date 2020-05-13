@@ -18,7 +18,7 @@ namespace JsonSerializer_Console
         public int Id { get; set; }
         [JsonAttribute]
         public string Name { get; set; }
-        [JsonList]
+        [JsonAttribute]
         public List<Person> Children { get; set; }
     }
 }
