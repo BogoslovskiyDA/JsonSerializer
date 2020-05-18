@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonSerializer", "JsonSerializer\JsonSerializer.csproj", "{2E7143C1-2EC2-48B4-B4AE-E8D5E6F0596A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonSerializer_Console", "JsonSerializer_Console\JsonSerializer_Console.csproj", "{491E1B84-4BAB-4401-A29C-9EEAEEAFC1B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonSerializer_Console", "JsonSerializer_Console\JsonSerializer_Console.csproj", "{491E1B84-4BAB-4401-A29C-9EEAEEAFC1B1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2E7143C1-2EC2-48B4-B4AE-E8D5E6F0596A} = {2E7143C1-2EC2-48B4-B4AE-E8D5E6F0596A}
 	EndProjectSection

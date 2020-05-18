@@ -39,23 +39,26 @@ namespace JsonSerializer
             sb.Append(' ', probels);
             sb.AppendLine("{");
             foreach (var prop in properties)
-            {              
+            {
                 var attrs = prop.GetCustomAttributes(false);
                 if (attrs.Any(a => a.GetType() == typeof(JsonAttributeAttribute)))
-                {
+                {                    
                     if (prop.PropertyType.IsGenericType)
                     {
-                        var array = prop.GetValue(value) as IEnumerable;
-                        if (((IList)array).Count == 0)
-                            break;
-                        sb.Append(' ', probels);
-                        sb.AppendLine($" \"{prop.Name.ToLower()}\" : [");
-                        foreach (var item in array)
-                        {
-                            Serialize(item,sb);
-                        }
-                        sb.Append(' ', probels + 1);
-                        sb.AppendLine("]");
+                        Serialize_list(prop, value,ref sb);
+                        #region serialize
+                        //var array = prop.GetValue(value) as IEnumerable;
+                        //if (((IList)array).Count == 0)
+                        //    break;
+                        //sb.Append(' ', probels);
+                        //sb.AppendLine($" \"{prop.Name.ToLower()}\" : [");
+                        //foreach (var item in array)
+                        //{
+                        //    Serialize(item,sb);
+                        //}
+                        //sb.Append(' ', probels + 2);
+                        //sb.AppendLine("]");
+                        #endregion
                     }
                     else
                     {
@@ -67,6 +70,27 @@ namespace JsonSerializer
             sb.Append(' ', probels);
             sb.AppendLine("}");
             probels -= 2;
+        }
+        private static StringBuilder Serialize_list(PropertyInfo prop, object value, ref StringBuilder sb)
+        {
+            var array = prop.GetValue(value) as IEnumerable;
+            if (((IList)array).Count == 0)
+                return sb;
+            sb.Append(' ', probels);
+            sb.AppendLine($" \"{prop.Name.ToLower()}\" : [");
+            foreach (var item in array)
+            {
+                if (item.GetType().IsValueType)
+                {
+                    sb.Append(' ', probels + 4);
+                    sb.AppendLine($"{item},");
+                }
+                else
+                    Serialize(item, sb);
+            }
+            sb.Append(' ', probels + 2);
+            sb.AppendLine("]");
+            return sb;
         }
     }
 }
