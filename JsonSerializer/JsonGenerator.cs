@@ -12,7 +12,6 @@ namespace JsonSerializer
     public class JsonGenerator
     {
         private static int probels = -2;
-
         public static void GenerateJson(object value)
         {
             probels = -2;
@@ -24,7 +23,6 @@ namespace JsonSerializer
             }
             Console.WriteLine(sb);
         }
-
         public static void Serialize(object value,StringBuilder sb)
         {
             probels += 2;
@@ -42,23 +40,16 @@ namespace JsonSerializer
             {
                 var attrs = prop.GetCustomAttributes(false);
                 if (attrs.Any(a => a.GetType() == typeof(JsonAttributeAttribute)))
-                {                    
+                {           
+                    if (prop.PropertyType.IsArray)
+                    {
+                        Serialize_Array(prop, value, ref sb);
+                        continue;
+                    }
                     if (prop.PropertyType.IsGenericType)
                     {
                         Serialize_list(prop, value,ref sb);
-                        #region serialize
-                        //var array = prop.GetValue(value) as IEnumerable;
-                        //if (((IList)array).Count == 0)
-                        //    break;
-                        //sb.Append(' ', probels);
-                        //sb.AppendLine($" \"{prop.Name.ToLower()}\" : [");
-                        //foreach (var item in array)
-                        //{
-                        //    Serialize(item,sb);
-                        //}
-                        //sb.Append(' ', probels + 2);
-                        //sb.AppendLine("]");
-                        #endregion
+                        continue;
                     }
                     else
                     {
@@ -80,13 +71,52 @@ namespace JsonSerializer
             sb.AppendLine($" \"{prop.Name.ToLower()}\" : [");
             foreach (var item in array)
             {
-                if (item.GetType().IsValueType)
+                if (item != null)
                 {
-                    sb.Append(' ', probels + 4);
-                    sb.AppendLine($"{item},");
+                    if (item.GetType().Name == "String" || item.GetType().IsValueType)
+                    {
+                        sb.Append(' ', probels + 4);
+                        sb.AppendLine($"{item},");
+                    }
+                    else
+                        Serialize(item, sb);
                 }
                 else
-                    Serialize(item, sb);
+                {
+                    sb.Append(' ', probels + 4);
+                    sb.AppendLine($"null,");
+                }
+            }
+            sb.Append(' ', probels + 2);
+            sb.AppendLine("]");
+            return sb;
+        }
+        private static StringBuilder Serialize_Array(PropertyInfo prop, object value, ref StringBuilder sb)
+        {
+            var array = prop.GetValue(value) as Array;
+            if (array.Length == 0)
+                return sb;
+            //if (array.GetValue(0) == null)
+            //    return sb;
+            sb.Append(' ', probels);
+            sb.AppendLine($" \"{prop.Name.ToLower()}\" : [");
+            foreach (var item in array)
+            {
+                if (item != null)
+                {
+                    if (item.GetType().Name == "String" || item.GetType().IsValueType)
+                    {
+                        sb.Append(' ', probels + 4);
+                        sb.AppendLine($"{item},");
+                    }
+                    else
+                        Serialize(item, sb);
+                }
+                else
+                {
+                    sb.Append(' ', probels + 4);
+                    sb.AppendLine("null,");
+                }
             }
             sb.Append(' ', probels + 2);
             sb.AppendLine("]");

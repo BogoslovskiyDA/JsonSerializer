@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="JsonAttributeAttribute.cs" />
     <Compile Include="JsonGenerator.cs" />
-    <Compile Include="JsonListAttribute.cs" />
     <Compile Include="JsonObjectAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -7,13 +7,12 @@ namespace JsonSerializer_Console
 {
     [JsonObject]
     class Person
-    {       
+    {
         public Person(int id, string name)
         {
             Id = id;
             Name = name;
             Children = new List<Person>();
-            Num = new List<int>();
         }
         [JsonAttribute]
         public int Id { get; set; }
@@ -21,7 +20,5 @@ namespace JsonSerializer_Console
         public string Name { get; set; }
         [JsonAttribute]
         public List<Person> Children { get; set; }
-        [JsonAttribute]
-        public List<int> Num { get; set; }
     }
 }

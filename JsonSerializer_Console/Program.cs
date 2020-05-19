@@ -1,5 +1,6 @@
 ﻿using System;
 using JsonSerializer;
+using JsonSerializer_Console.classes;
 
 namespace JsonSerializer_Console
 {
@@ -7,23 +8,23 @@ namespace JsonSerializer_Console
     {
         static void Main(string[] args)
         {
-            Person person1 = new Person(4, "Jonatan");
-            person1.Num.Add(4);
-            person1.Num.Add(5);
-            person1.Num.Add(6);
-            //person1.Children.Add(new Person(5, "Joseph"));
-            Person person = new Person(1, "Jack");
-            person.Num.Add(1);
-            person.Num.Add(2);
-            person.Num.Add(3);
-            person.Children.Add(person1);
-            //person.Children.Add(new Person(2, "Jill"));
-            //person.Children.Add(new Person(3, "Josuke"));                        
-            JsonGenerator.GenerateJson(person);
+            //Sportsman sportsman = new Sportsman("Усейн Болт", 33);
+            //sportsman.Medals[2] = "gold";
+            //JsonGenerator.GenerateJson(sportsman);
 
-            //int v = 1;
-            //var objecttype = v.GetType();
-            //var propinf = objecttype.GetProperties();
+            //Writer writer = new Writer("Харуки Мураками", 71);
+            //writer.Book.Add("1Q84");
+            //writer.Book.Add(null);
+            //writer.Book.Add("Норвежский лес");
+            //JsonGenerator.GenerateJson(writer);
+
+            Person person1 = new Person(4, "Jonatan");
+            person1.Children.Add(new Person(5, "Joseph"));
+            Person person = new Person(1, "Jack");
+            person.Children.Add(person1);
+            person.Children.Add(new Person(2, "Jill"));
+            person.Children.Add(new Person(3, "Josuke"));
+            JsonGenerator.GenerateJson(person);
 
             Console.ReadKey();
         }
