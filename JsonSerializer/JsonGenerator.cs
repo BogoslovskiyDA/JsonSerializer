@@ -23,7 +23,7 @@ namespace JsonSerializer
             }
             Console.WriteLine(sb);
         }
-        public static void Serialize(object value,StringBuilder sb)
+        private static void Serialize(object value,StringBuilder sb)
         {
             probels += 2;
             var objectType = value.GetType();
@@ -96,8 +96,6 @@ namespace JsonSerializer
             var array = prop.GetValue(value) as Array;
             if (array.Length == 0)
                 return sb;
-            //if (array.GetValue(0) == null)
-            //    return sb;
             sb.Append(' ', probels);
             sb.AppendLine($" \"{prop.Name.ToLower()}\" : [");
             foreach (var item in array)
