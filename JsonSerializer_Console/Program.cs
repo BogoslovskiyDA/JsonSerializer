@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using JsonSerializer;
 using JsonSerializer_Console.classes;
 
@@ -12,31 +13,33 @@ namespace JsonSerializer_Console
             //Person_Array person_Array = new Person_Array(1, "Jack");
             //person_Array.AppendCapacity();
             //person_Array.Children[0] = new Person_Array(2, "Jill");
+            //person_Array.AppendCapacity();
+            //person_Array.Children[1] = null;
             //JsonGenerator.GenerateJson(person_Array);
             #endregion
 
             #region sportsman
-            //Sportsman sportsman = new Sportsman("Усейн Болт", 33);
+            //Sportsman sportsman = new Sportsman("Usain Bolt", 33);
             //sportsman.Medals[2] = "gold";
             //JsonGenerator.GenerateJson(sportsman);
             #endregion
 
             #region writer
-            //Writer writer = new Writer("Харуки Мураками", 71);
+            //Writer writer = new Writer("Haruki Murakami", 71);
             //writer.Book.Add("1Q84");
             //writer.Book.Add(null);
-            //writer.Book.Add("Норвежский лес");
+            //writer.Book.Add("Norwegian Wood");
             //JsonGenerator.GenerateJson(writer);
             #endregion
 
             #region person
-            Person person1 = new Person(4, "Jonatan");
-            person1.Children.Add(new Person(5, "Joseph"));
-            Person person = new Person(1, "Jack");
-            person.Children.Add(person1);
-            person.Children.Add(new Person(2, "Jill"));
-            person.Children.Add(new Person(3, "Josuke"));
-            JsonGenerator.GenerateJson(person);
+            ////Person person1 = new Person(4, "Jonatan");
+            ////person1.Children.Add(new Person(5, "Joseph"));
+            //Person person = new Person(1, "Jack");
+            ////person.Children.Add(person1);
+            //person.Children.Add(new Person(2, "Jill"));
+            ////person.Children.Add(new Person(3, "Josuke"));
+            //JsonGenerator.GenerateJson(person);
             #endregion
 
             Console.ReadKey();

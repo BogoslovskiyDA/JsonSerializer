@@ -5,7 +5,6 @@
   },
   "projects": {
     "D:\\мои проекты\\4 semestr\\JsonSerializer\\JsonSerializer\\JsonSerializer.csproj": {
-      "version": "1.0.0",
       "restore": {
         "projectUniqueName": "D:\\мои проекты\\4 semestr\\JsonSerializer\\JsonSerializer\\JsonSerializer.csproj",
         "projectName": "JsonSerializer",
@@ -65,12 +64,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.2, 3.1.2]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
