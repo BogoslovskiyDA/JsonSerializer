@@ -93,15 +93,17 @@ namespace UnitTestProjerctJson
         [TestMethod]
         public void TestObjectWithoutAttribute()
         {
+            var js = new JsonGenerator();
             Student student = new Student("Jack", 20);
-            Assert.AreEqual("Object not marked with attribute", JsonGenerator.GenerateJson(student).ToString());
+            Assert.ThrowsException<InvalidJsonObject>(() => { js.GenerateJson(student, student.GetType().Name); });
         }
         [TestMethod]
         public void TestArrayValue()
         {
+            var js = new JsonGenerator();
             Sportsman sportsman = new Sportsman("Usain Bolt", 33);
             sportsman.Medals[2] = "gold";
-            string[] lines = JsonGenerator.GenerateJson(sportsman).ToString().Split('\n');
+            string[] lines = js.GenerateJson(sportsman, sportsman.GetType().Name).ToString().Split('\n');
 
             Assert.AreEqual("{", lines[0].Trim());
             Assert.AreEqual("\"name\" : \"Usain Bolt\",", lines[1].Trim());
@@ -116,30 +118,36 @@ namespace UnitTestProjerctJson
         [TestMethod]
         public void TestArrayObject()
         {
+            var js = new JsonGenerator();
             Person_Array person_Array = new Person_Array(1, "Jack");
             person_Array.AppendCapacity();
-            person_Array.Children[0] = new Person_Array(2, "Jill");
-            string[] lines = JsonGenerator.GenerateJson(person_Array).ToString().Split('\n');
+            person_Array.Children[0] = null;
+            person_Array.AppendCapacity();
+            person_Array.Children[1] = new Person_Array(2, "Jill");
+            string[] lines = js.GenerateJson(person_Array , person_Array.GetType().Name).ToString().Split('\n');
 
             Assert.AreEqual("{", lines[0].Trim());
             Assert.AreEqual("\"id\" : 1,", lines[1].Trim());
             Assert.AreEqual("\"name\" : \"Jack\",", lines[2].Trim());
             Assert.AreEqual("\"children\" : [", lines[3].Trim());
-            Assert.AreEqual("{", lines[4].Trim());
-            Assert.AreEqual("\"id\" : 2,", lines[5].Trim());
-            Assert.AreEqual("\"name\" : \"Jill\"", lines[6].Trim());
-            Assert.AreEqual("}", lines[7].Trim());
-            Assert.AreEqual("]", lines[8].Trim());
+            Assert.AreEqual("null,", lines[4].Trim());
+            Assert.AreEqual("{", lines[5].Trim());
+            Assert.AreEqual("\"id\" : 2,", lines[6].Trim());
+            Assert.AreEqual("\"name\" : \"Jill\",", lines[7].Trim());
+            Assert.AreEqual("\"children\" : []", lines[8].Trim());
             Assert.AreEqual("}", lines[9].Trim());
+            Assert.AreEqual("]", lines[10].Trim());
+            Assert.AreEqual("}", lines[11].Trim());
         }
         [TestMethod]
         public void TestListValue()
         {
+            var js = new JsonGenerator();
             Writer writer = new Writer("Haruki Murakami", 71);
             writer.Book.Add("1Q84");
             writer.Book.Add(null);
             writer.Book.Add("Norwegian Wood");
-            string[] lines = JsonGenerator.GenerateJson(writer).ToString().Split('\n');
+            string[] lines = js.GenerateJson(writer , writer.GetType().Name).ToString().Split('\n');
 
             Assert.AreEqual("{", lines[0].Trim());
             Assert.AreEqual("\"name\" : \"Haruki Murakami\",", lines[1].Trim());
@@ -154,26 +162,30 @@ namespace UnitTestProjerctJson
         [TestMethod]
         public void TestListObjects()
         {
+            var js = new JsonGenerator();
             Person person = new Person(1, "Jack");
-            person.Children.Add(new Person(2, "Jill"));
-            JsonGenerator.GenerateJson(person);
-            string[] lines = JsonGenerator.GenerateJson(person).ToString().Split('\n');
+            person.Children.Add(null);
+            person.Children.Add(new Person(2, null));
+            string[] lines = js.GenerateJson(person, person.GetType().Name).ToString().Split('\n');
 
             Assert.AreEqual("{", lines[0].Trim());
             Assert.AreEqual("\"id\" : 1,",lines[1].Trim());
             Assert.AreEqual("\"name\" : \"Jack\",", lines[2].Trim());
             Assert.AreEqual("\"children\" : [", lines[3].Trim());
-            Assert.AreEqual("{", lines[4].Trim());
-            Assert.AreEqual("\"id\" : 2,", lines[5].Trim());
-            Assert.AreEqual("\"name\" : \"Jill\"", lines[6].Trim());
-            Assert.AreEqual("}", lines[7].Trim());
-            Assert.AreEqual("]", lines[8].Trim());
+            Assert.AreEqual("null,", lines[4].Trim());
+            Assert.AreEqual("{", lines[5].Trim());
+            Assert.AreEqual("\"id\" : 2,", lines[6].Trim());
+            Assert.AreEqual("\"name\" : null,", lines[7].Trim());
+            Assert.AreEqual("\"children\" : []", lines[8].Trim());
             Assert.AreEqual("}", lines[9].Trim());
+            Assert.AreEqual("]", lines[10].Trim());
+            Assert.AreEqual("}", lines[11].Trim());
         }
         [TestMethod]
         public void TestSerializeNull()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => { JsonGenerator.GenerateJson(null); });
+            var js = new JsonGenerator();
+            Assert.ThrowsException<ArgumentNullException>(() => { js.GenerateJson(null , "null"); });
         }
     }
 }

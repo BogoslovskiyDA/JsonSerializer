@@ -9,19 +9,21 @@ namespace JsonSerializer_Console
     {
         static void Main(string[] args)
         {
+            JsonGenerator jsonGenerator = new JsonGenerator();
+
             #region person_array
             //Person_Array person_Array = new Person_Array(1, "Jack");
             //person_Array.AppendCapacity();
-            //person_Array.Children[0] = new Person_Array(2, "Jill");
+            //person_Array.Children[0] = null;
             //person_Array.AppendCapacity();
-            //person_Array.Children[1] = null;
-            //JsonGenerator.GenerateJson(person_Array);
+            //person_Array.Children[1] = new Person_Array(2, null);
+            //jsonGenerator.GenerateJson(person_Array , person_Array.GetType().Name);
             #endregion
 
             #region sportsman
             //Sportsman sportsman = new Sportsman("Usain Bolt", 33);
             //sportsman.Medals[2] = "gold";
-            //JsonGenerator.GenerateJson(sportsman);
+            //jsonGenerator.GenerateJson(sportsman , sportsman.GetType().Name);
             #endregion
 
             #region writer
@@ -29,7 +31,7 @@ namespace JsonSerializer_Console
             //writer.Book.Add("1Q84");
             //writer.Book.Add(null);
             //writer.Book.Add("Norwegian Wood");
-            //JsonGenerator.GenerateJson(writer);
+            //jsonGenerator.GenerateJson(writer , writer.GetType().Name);
             #endregion
 
             #region person
@@ -39,7 +41,7 @@ namespace JsonSerializer_Console
             ////person.Children.Add(person1);
             //person.Children.Add(new Person(2, "Jill"));
             ////person.Children.Add(new Person(3, "Josuke"));
-            //JsonGenerator.GenerateJson(person);
+            //jsonGenerator.GenerateJson(person, person.GetType().Name);
             #endregion
 
             Console.ReadKey();
