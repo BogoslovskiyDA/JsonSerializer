@@ -39,60 +39,37 @@ namespace JsonSerializer
         {
             P += Probels;
             var objectType = value.GetType();
-            var attr = objectType.GetCustomAttributes(false);
             var properties = objectType.GetProperties();
             sb.Append(' ', P);
             sb.AppendLine("{");
-            int i = properties.Length;
-            foreach (var prop in properties)
+            for (int i = 0; i < properties.Length; i++)
             {
-                i--; 
-                var attrs = prop.GetCustomAttributes(false);
+                var attrs = properties[i].GetCustomAttributes(false);
                 if (attrs.Any(a => a.GetType() == typeof(JsonAttributeAttribute)))
-                {           
-                    if (prop.PropertyType.IsArray)
+                {
+                    if (properties[i].PropertyType.IsArray || properties[i].PropertyType.Name.Equals(typeof(List<>).Name))
                     {
-                        Serialize_Array(prop, value, ref sb);
-                        AddComma(ref sb, i);
-                        continue;
-                    }
-                    if (prop.PropertyType.Name.Equals(typeof(List<>).Name))
-                    {
-                        Serialize_List(prop, value,ref sb);
-                        AddComma(ref sb, i);
-                        continue;
+                        Serialize_List_and_Array(properties[i], value, ref sb);
                     }
                     else
                     {
-                        if (prop.GetValue(value) == null)
-                        {
-                            sb.Append(' ', P);
-                            sb.Append($" \"{prop.Name.ToLower()}\" : null");
-                            AddComma(ref sb, i);
-                            continue;
-                        }
-                        if (prop.PropertyType.Name.Equals(typeof(string).Name))
-                        {
-                            sb.Append(' ', P);
-                            sb.Append($" \"{prop.Name.ToLower()}\" : \"{prop.GetValue(value)}\"");
-                        }
-                        else
-                        {
-                            sb.Append(' ', P);
-                            sb.Append($" \"{prop.Name.ToLower()}\" : {prop.GetValue(value)}");
-                        }
-                        AddComma(ref sb, i);
-                    }                  
+                        Serialize_Property(value, properties[i], ref sb);
+                    }
+                    if (i + 1 == properties.Length)
+                        sb.Append("\n");
+                    else
+                        sb.Append(",\n");
                 }
-            }
+            }           
             sb.Append(' ', P);
             sb.Append("}");
             P -= Probels;
         }
-        private void Serialize_List(PropertyInfo prop, object value, ref StringBuilder sb)
+        private void Serialize_List_and_Array(PropertyInfo prop, object value, ref StringBuilder sb)
         {
-            var array = prop.GetValue(value) as IEnumerable;
-            if (((IList)array).Count == 0)
+            var array = prop.GetValue(value) as IList;
+
+            if (array.Count == 0)
             {
                 sb.Append(' ', P);
                 sb.Append($" \"{prop.Name.ToLower()}\" : []");
@@ -101,41 +78,21 @@ namespace JsonSerializer
             sb.Append(' ', P);
             sb.AppendLine($" \"{prop.Name.ToLower()}\" : [");
             P += Probels;
-            int i = ((IList)array).Count;
+            int i = array.Count;
             foreach (var item in array)
             {
                 i--;
-                Serialize_Item(item, ref sb);
-                AddComma(ref sb, i);
+                Serialize_Item_From_List_or_Array(item, ref sb);
+                if (i != 0)
+                    sb.Append(",\n");
+                else
+                    sb.Append("\n");
             }
             sb.Append(' ', P);
             sb.Append("]");
             P -= Probels;
         }
-        private void Serialize_Array(PropertyInfo prop, object value, ref StringBuilder sb)
-        {
-            var array = prop.GetValue(value) as Array;
-            if (array.Length == 0)
-            {
-                sb.Append(' ', P);
-                sb.Append($" \"{prop.Name.ToLower()}\" : []");
-                return;
-            }
-            sb.Append(' ', P);
-            sb.AppendLine($" \"{prop.Name.ToLower()}\" : [");
-            P += Probels;
-            int i = array.Length;
-            foreach (var item in array)
-            {
-                i--;
-                Serialize_Item(item, ref sb);
-                AddComma(ref sb, i);
-            }
-            sb.Append(' ', P);
-            sb.Append("]");
-            P -= Probels;
-        }
-        private void Serialize_Item(object item, ref StringBuilder sb)
+        private void Serialize_Item_From_List_or_Array(object item, ref StringBuilder sb)
         {
             if (item != null)
             {
@@ -164,12 +121,26 @@ namespace JsonSerializer
                 sb.Append("null");
             }
         }
-        private void AddComma(ref StringBuilder sb, int i)
+        private void Serialize_Property(object value, PropertyInfo property, ref StringBuilder sb)
         {
-            if (i != 0)
-                sb.Append(",\n");
+            if (property.GetValue(value) == null)
+            {
+                sb.Append(' ', P);
+                sb.Append($" \"{property.Name.ToLower()}\" : null");
+                return;
+            }
+            if (property.PropertyType.Name.Equals(typeof(string).Name))
+            {
+                sb.Append(' ', P);
+                sb.Append($" \"{property.Name.ToLower()}\" : \"{property.GetValue(value)}\"");
+                return;
+            }
             else
-                sb.Append("\n");
+            {
+                sb.Append(' ', P);
+                sb.Append($" \"{property.Name.ToLower()}\" : {property.GetValue(value)}");
+                return;
+            }
         }
     }
 }
