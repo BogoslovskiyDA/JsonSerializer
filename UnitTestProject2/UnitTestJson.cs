@@ -106,9 +106,9 @@ namespace UnitTestProjerctJson
             string[] lines = js.GenerateJson(sportsman, sportsman.GetType().Name).ToString().Split('\n');
 
             Assert.AreEqual("{", lines[0].Trim());
-            Assert.AreEqual("\"name\" : \"Usain Bolt\",", lines[1].Trim());
-            Assert.AreEqual("\"age\" : 33,", lines[2].Trim());
-            Assert.AreEqual("\"medals\" : [", lines[3].Trim());
+            Assert.AreEqual("\"Name\" : \"Usain Bolt\",", lines[1].Trim());
+            Assert.AreEqual("\"Age\" : 33,", lines[2].Trim());
+            Assert.AreEqual("\"Medals\" : [", lines[3].Trim());
             Assert.AreEqual("null,", lines[4].Trim());
             Assert.AreEqual("null,", lines[5].Trim());
             Assert.AreEqual("\"gold\"", lines[6].Trim());
@@ -127,14 +127,14 @@ namespace UnitTestProjerctJson
             string[] lines = js.GenerateJson(person_Array , person_Array.GetType().Name).ToString().Split('\n');
 
             Assert.AreEqual("{", lines[0].Trim());
-            Assert.AreEqual("\"id\" : 1,", lines[1].Trim());
-            Assert.AreEqual("\"name\" : \"Jack\",", lines[2].Trim());
-            Assert.AreEqual("\"children\" : [", lines[3].Trim());
+            Assert.AreEqual("\"Id\" : 1,", lines[1].Trim());
+            Assert.AreEqual("\"Name\" : \"Jack\",", lines[2].Trim());
+            Assert.AreEqual("\"Children\" : [", lines[3].Trim());
             Assert.AreEqual("null,", lines[4].Trim());
             Assert.AreEqual("{", lines[5].Trim());
-            Assert.AreEqual("\"id\" : 2,", lines[6].Trim());
-            Assert.AreEqual("\"name\" : \"Jill\",", lines[7].Trim());
-            Assert.AreEqual("\"children\" : []", lines[8].Trim());
+            Assert.AreEqual("\"Id\" : 2,", lines[6].Trim());
+            Assert.AreEqual("\"Name\" : \"Jill\",", lines[7].Trim());
+            Assert.AreEqual("\"Children\" : []", lines[8].Trim());
             Assert.AreEqual("}", lines[9].Trim());
             Assert.AreEqual("]", lines[10].Trim());
             Assert.AreEqual("}", lines[11].Trim());
@@ -150,9 +150,9 @@ namespace UnitTestProjerctJson
             string[] lines = js.GenerateJson(writer , writer.GetType().Name).ToString().Split('\n');
 
             Assert.AreEqual("{", lines[0].Trim());
-            Assert.AreEqual("\"name\" : \"Haruki Murakami\",", lines[1].Trim());
-            Assert.AreEqual("\"age\" : 71,", lines[2].Trim());
-            Assert.AreEqual("\"book\" : [", lines[3].Trim());
+            Assert.AreEqual("\"Name\" : \"Haruki Murakami\",", lines[1].Trim());
+            Assert.AreEqual("\"Age\" : 71,", lines[2].Trim());
+            Assert.AreEqual("\"Book\" : [", lines[3].Trim());
             Assert.AreEqual("\"1Q84\",", lines[4].Trim());
             Assert.AreEqual("null,", lines[5].Trim());
             Assert.AreEqual("\"Norwegian Wood\"", lines[6].Trim());
@@ -169,14 +169,14 @@ namespace UnitTestProjerctJson
             string[] lines = js.GenerateJson(person, person.GetType().Name).ToString().Split('\n');
 
             Assert.AreEqual("{", lines[0].Trim());
-            Assert.AreEqual("\"id\" : 1,",lines[1].Trim());
-            Assert.AreEqual("\"name\" : \"Jack\",", lines[2].Trim());
-            Assert.AreEqual("\"children\" : [", lines[3].Trim());
+            Assert.AreEqual("\"Id\" : 1,",lines[1].Trim());
+            Assert.AreEqual("\"Name\" : \"Jack\",", lines[2].Trim());
+            Assert.AreEqual("\"Children\" : [", lines[3].Trim());
             Assert.AreEqual("null,", lines[4].Trim());
             Assert.AreEqual("{", lines[5].Trim());
-            Assert.AreEqual("\"id\" : 2,", lines[6].Trim());
-            Assert.AreEqual("\"name\" : null,", lines[7].Trim());
-            Assert.AreEqual("\"children\" : []", lines[8].Trim());
+            Assert.AreEqual("\"Id\" : 2,", lines[6].Trim());
+            Assert.AreEqual("\"Name\" : null,", lines[7].Trim());
+            Assert.AreEqual("\"Children\" : []", lines[8].Trim());
             Assert.AreEqual("}", lines[9].Trim());
             Assert.AreEqual("]", lines[10].Trim());
             Assert.AreEqual("}", lines[11].Trim());

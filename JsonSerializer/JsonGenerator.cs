@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace JsonSerializer
 {
@@ -27,7 +26,7 @@ namespace JsonSerializer
             {
                 throw new InvalidJsonObject();
             }
-            Serialize(value,ref sb);
+            Serialize(value, sb);
             using (var sw = new StreamWriter(filename + ".json"))
             {
                 sw.Write(sb);
@@ -35,7 +34,7 @@ namespace JsonSerializer
             Console.WriteLine(sb);
             return sb;
         }
-        private void Serialize(object value,ref StringBuilder sb)
+        private void Serialize(object value, StringBuilder sb)
         {
             P += Probels;
             var objectType = value.GetType();
@@ -49,11 +48,11 @@ namespace JsonSerializer
                 {
                     if (properties[i].PropertyType.IsArray || properties[i].PropertyType.Name.Equals(typeof(List<>).Name))
                     {
-                        Serialize_List_and_Array(properties[i], value, ref sb);
+                        Serialize_List_and_Array(properties[i], value,  sb);
                     }
                     else
                     {
-                        Serialize_Property(value, properties[i], ref sb);
+                        Serialize_Property(value, properties[i],  sb);
                     }
                     if (i + 1 == properties.Length)
                         sb.Append("\n");
@@ -65,24 +64,24 @@ namespace JsonSerializer
             sb.Append("}");
             P -= Probels;
         }
-        private void Serialize_List_and_Array(PropertyInfo prop, object value, ref StringBuilder sb)
+        private void Serialize_List_and_Array(PropertyInfo prop, object value,  StringBuilder sb)
         {
             var array = prop.GetValue(value) as IList;
 
             if (array.Count == 0)
             {
                 sb.Append(' ', P);
-                sb.Append($" \"{prop.Name.ToLower()}\" : []");
+                sb.Append($" \"{prop.Name}\" : []");
                 return;
             }
             sb.Append(' ', P);
-            sb.AppendLine($" \"{prop.Name.ToLower()}\" : [");
+            sb.AppendLine($" \"{prop.Name}\" : [");
             P += Probels;
             int i = array.Count;
             foreach (var item in array)
             {
                 i--;
-                Serialize_Item_From_List_or_Array(item, ref sb);
+                Serialize_Item_From_List_or_Array(item,  sb);
                 if (i != 0)
                     sb.Append(",\n");
                 else
@@ -92,7 +91,7 @@ namespace JsonSerializer
             sb.Append("]");
             P -= Probels;
         }
-        private void Serialize_Item_From_List_or_Array(object item, ref StringBuilder sb)
+        private void Serialize_Item_From_List_or_Array(object item,  StringBuilder sb)
         {
             if (item != null)
             {
@@ -111,7 +110,7 @@ namespace JsonSerializer
                 else
                 {
                     P -= Probels; 
-                    Serialize(item, ref sb);
+                    Serialize(item,  sb);
                     P += Probels;
                 }
             }
@@ -121,24 +120,24 @@ namespace JsonSerializer
                 sb.Append("null");
             }
         }
-        private void Serialize_Property(object value, PropertyInfo property, ref StringBuilder sb)
+        private void Serialize_Property(object value, PropertyInfo property,  StringBuilder sb)
         {
             if (property.GetValue(value) == null)
             {
                 sb.Append(' ', P);
-                sb.Append($" \"{property.Name.ToLower()}\" : null");
+                sb.Append($" \"{property.Name}\" : null");
                 return;
             }
             if (property.PropertyType.Name.Equals(typeof(string).Name))
             {
                 sb.Append(' ', P);
-                sb.Append($" \"{property.Name.ToLower()}\" : \"{property.GetValue(value)}\"");
+                sb.Append($" \"{property.Name}\" : \"{property.GetValue(value)}\"");
                 return;
             }
             else
             {
                 sb.Append(' ', P);
-                sb.Append($" \"{property.Name.ToLower()}\" : {property.GetValue(value)}");
+                sb.Append($" \"{property.Name}\" : {property.GetValue(value)}");
                 return;
             }
         }

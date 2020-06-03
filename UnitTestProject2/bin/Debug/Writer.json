@@ -1,7 +1,7 @@
 {
- "name" : "Haruki Murakami",
- "age" : 71,
- "book" : [
+ "Name" : "Haruki Murakami",
+ "Age" : 71,
+ "Book" : [
     "1Q84",
     null,
     "Norwegian Wood"

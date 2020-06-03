@@ -1,7 +1,7 @@
 {
- "name" : "Usain Bolt",
- "age" : 33,
- "medals" : [
+ "Name" : "Usain Bolt",
+ "Age" : 33,
+ "Medals" : [
     null,
     null,
     "gold"

@@ -4,3 +4,9 @@ D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer\obj\Debug\JsonS
 D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer\obj\Debug\JsonSerializer.dll
 D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer\obj\Debug\JsonSerializer.pdb
 D:\мои проекты\4 semestr\JsonSerializer\JsonSerializer\obj\Debug\JsonSerializer.csprojAssemblyReference.cache
+D:\My Projects\4 semestr\JsonSerializer\JsonSerializer\bin\Debug\JsonSerializer.dll
+D:\My Projects\4 semestr\JsonSerializer\JsonSerializer\bin\Debug\JsonSerializer.pdb
+D:\My Projects\4 semestr\JsonSerializer\JsonSerializer\obj\Debug\JsonSerializer.csprojAssemblyReference.cache
+D:\My Projects\4 semestr\JsonSerializer\JsonSerializer\obj\Debug\JsonSerializer.csproj.CoreCompileInputs.cache
+D:\My Projects\4 semestr\JsonSerializer\JsonSerializer\obj\Debug\JsonSerializer.dll
+D:\My Projects\4 semestr\JsonSerializer\JsonSerializer\obj\Debug\JsonSerializer.pdb

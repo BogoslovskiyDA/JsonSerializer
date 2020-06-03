@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\мои проекты\\4 semestr\\JsonSerializer\\JsonSerializer_Console\\JsonSerializer_Console.csproj",
+      "projectUniqueName": "D:\\My Projects\\4 semestr\\JsonSerializer\\JsonSerializer_Console\\JsonSerializer_Console.csproj",
       "projectName": "JsonSerializer_Console",
-      "projectPath": "D:\\мои проекты\\4 semestr\\JsonSerializer\\JsonSerializer_Console\\JsonSerializer_Console.csproj",
+      "projectPath": "D:\\My Projects\\4 semestr\\JsonSerializer\\JsonSerializer_Console\\JsonSerializer_Console.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\мои проекты\\4 semestr\\JsonSerializer\\JsonSerializer_Console\\obj\\",
+      "outputPath": "D:\\My Projects\\4 semestr\\JsonSerializer\\JsonSerializer_Console\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -55,8 +55,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\мои проекты\\4 semestr\\JsonSerializer\\JsonSerializer\\JsonSerializer.csproj": {
-              "projectPath": "D:\\мои проекты\\4 semestr\\JsonSerializer\\JsonSerializer\\JsonSerializer.csproj"
+            "D:\\My Projects\\4 semestr\\JsonSerializer\\JsonSerializer\\JsonSerializer.csproj": {
+              "projectPath": "D:\\My Projects\\4 semestr\\JsonSerializer\\JsonSerializer\\JsonSerializer.csproj"
             }
           }
         }
